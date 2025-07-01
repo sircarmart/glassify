@@ -5,8 +5,10 @@ async function seedCocktail () {
 
     const fetchData = await fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php");
     const data = await fetchData.json();
-    const bool = !!(await Cocktail.findOne({name: data.drinks[0].strDrink}))
-    if(bool) {
+    const exists = await Cocktail.findOne({name: data.drinks[0].strDrink}) // if we already have this cocktail in the database, we don't want to add it again
+    
+    if (exists) {
+
         return;
     }
     let ingArr = [];
@@ -14,6 +16,7 @@ async function seedCocktail () {
     console.log("instructions: ", data.drinks[0].strInstructions);
     console.log("alcoholic: ", data.drinks[0].strAlcoholic);
     console.log("glass: ", data.drinks[0].strGlass);
+    console.log("image: ", data.drinks[0].strDrinkThumb);
     for(let i = 1; i <= 15; i++) {
         if(data.drinks[0][`strIngredient${i}`] != null) {
             ingArr.push(data.drinks[0][`strIngredient${i}`]);
@@ -25,7 +28,8 @@ async function seedCocktail () {
         alcoholic: data.drinks[0].strAlcoholic,
         glass: data.drinks[0].strGlass,
         instructions: data.drinks[0].strInstructions,
-        ingredients: ingArr
+        ingredients: ingArr,
+        image: data.drinks[0].strDrinkThumb
     }); 
 }
 db.once('open', async () => {
