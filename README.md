@@ -6,7 +6,7 @@ Glassify is a MERN full stack application developed in order to help users searc
 ## Usage and Deployed Link
 As a non-registered user, users are able to search cocktails.
 
-[Deployed Link](https://glassify.herokuapp.com/)
+[Deployed Link](https://glassify-2203ed0261c8.herokuapp.com/)
 
 ![Not Logged In](./client/src/images/notloggedin.gif)
 

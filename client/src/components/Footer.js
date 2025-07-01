@@ -48,7 +48,7 @@ export function Footer() {
 					<ActionIcon size="lg">
 						<a
 							className="github"
-							href="https://github.com/teedaa/glassify"
+							href="https://github.com/sircarmart/glassify"
 							target="_blank"
 							rel="noreferrer"
 						>
